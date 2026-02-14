@@ -1,0 +1,5 @@
+Dataset,Samples,Features,Classes,Model,Accuracy
+BreastCancer,569,30,2,RandomForest,0.9649122807017544
+BreastCancer,569,30,2,DecisionTree,0.9473684210526315
+BreastCancer,569,30,2,SVM,0.9473684210526315
+BreastCancer,569,30,2,XGBoost,0.956140350877193
