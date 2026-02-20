@@ -1,0 +1,7 @@
+Dataset,Best_Model
+BreastCancer,RandomForest
+Digits,SVM
+Iris,RandomForest
+Pima,SVM
+Titanic,DecisionTree
+Wine,RandomForest

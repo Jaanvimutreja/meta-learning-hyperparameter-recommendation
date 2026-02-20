@@ -1,0 +1,3 @@
+dataset_name,file_path,target_column
+Pima,data/raw/pima.csv,Outcome
+Titanic,data/raw/titanic.csv,Survived
