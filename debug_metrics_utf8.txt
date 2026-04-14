@@ -1,0 +1,15 @@
+﻿--- TESTING EVALUATION LOGIC ---
+Probabilities modified to be 100% correct.
+System Hit Rate @ 1: 1.0
+System Hit Rate @ 3: 1.0
+System MRR: 1.0
+
+Let's test argsort manually:
+probs_example: [0.1 0.5 0.4]
+np.argsort(probs)[::-1][:2] = [1 2]
+
+SANITY TEST
+Rand HR@3: 0.0
+Const HR@3: 0.2
+
+Can we reproduce Hit Rate = 0 and MRR = 0.07?
