@@ -1,181 +1,226 @@
-# Lightweight CNN-Based Meta-Learning Framework for Fast Hyperparameter Recommendation
+# ⚡ HPSM — Hyperparameter Selection using Meta-Learning
 
-A research-grade prototype that predicts optimal SVM hyperparameters for new tabular datasets instantly, by learning dataset-property → best-config mappings through a lightweight CNN meta-learner.
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
+![Framework](https://img.shields.io/badge/Framework-PyTorch-red)
+![Frontend](https://img.shields.io/badge/UI-Streamlit-ff4b4b)
+![Status](https://img.shields.io/badge/Status-Research%20Project-success)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Stars](https://img.shields.io/github/stars/your-username/HPSM?style=social)
+
+> **Stop searching. Start predicting.**
+> An end-to-end AutoML system that predicts the best machine learning algorithm and hyperparameters using **Meta-Learning + CNNs + Knowledge Transfer**.
 
 ---
 
-## Architecture
+## 🚀 Highlights
 
-```
-Dataset Input
-    ↓
-Dataset Cleaning & Preprocessing
-    ↓
-Meta-Feature Extraction (pymfe)
-    ↓
-12×12 Matrix Transformation
-    ↓
-CNN Meta-Learning Model (PyTorch)
-    ↓
-Hyperparameter Recommendation
-    ↓
-SVM Training with Recommended HP
-    ↓
-Evaluation & Results Display (Streamlit)
-```
+* ⚡ Instant model + hyperparameter recommendation
+* 🧠 CNN-based meta-learning
+* 🖼️ Tabular → Image transformation (20×20)
+* 🔁 Self-improving knowledge base
+* 🔗 Hybrid intelligence (CNN + similarity)
+* 🖥️ Interactive Streamlit UI
+* 🧪 Fully verified pipeline
 
-## Project Structure
+---
 
-```
-HPSM/
-├── backend/
-│   ├── config.py                 # Centralized configuration
-│   ├── dataset_loader.py         # Load ~150+ tabular datasets (online/offline)
-│   ├── preprocessing.py          # Data cleaning pipeline
-│   ├── feature_extraction.py     # Meta-feature extraction (pymfe → 12×12)
-│   ├── hyperparameter_search.py  # SVM grid search (9 configs)
-│   ├── cnn_model.py              # PyTorch CNN architecture
-│   ├── train_meta_model.py       # Training pipeline
-│   ├── recommend.py              # Inference for new datasets
-│   ├── baseline.py               # Random baseline for comparison
-│   ├── pipeline.py               # Full automated pipeline
-│   └── logger.py                 # Structured logging
-├── experiments/
-│   ├── metrics.py                # MRR, Hit Rate, accuracy metrics
-│   ├── evaluation.py             # Evaluate on test datasets
-│   ├── visualization.py          # Publication-quality plots
-│   ├── results/                  # CSV + JSON experiment results
-│   └── plots/                    # Generated charts
-├── frontend/
-│   └── app.py                    # Streamlit web interface
-├── models/                       # Saved CNN weights + metadata
-├── datasets/
-│   ├── cache/                    # Cached dataset downloads (.pkl)
-│   └── 100_datasets/             # Offline raw physical CSV datasets
-├── logs/                         # Pipeline + training logs
-├── tests/
-│   ├── test_dataset_loader.py
-│   ├── test_feature_extraction.py
-│   └── test_model.py
-├── pipeline.py                   # One-command entry point
-├── verify_pipeline.py            # End-to-end verification
-├── requirements.txt
-└── README.md
+## 🧠 How It Works
+
+```text
+Dataset → Preprocessing → Meta-Features → 20×20 Matrix
+        → CNN → Best Config → Train → Evaluate
 ```
 
-## Quick Start
+### 🔹 Preprocessing
 
-### 1. Install Dependencies
+* Missing values → mean imputation
+* Categorical encoding → LabelEncoder
+* Outlier clipping
+* Feature scaling
 
-```bash
-# Create a virtual environment (recommended)
+### 🔹 Meta-Feature Extraction
 
-      # Windows
-      .\venv\Scripts\Activate
-# source venv/bin/activate   # macOS/Linux
+* 400 features:
 
-pip install -r requirements.txt
-```
+  * statistical
+  * information-theoretic
+  * landmarking
+  * model-based
+* Converted into **20×20 matrix**
 
-### 2. Run Full Pipeline (One Command)
+### 🔹 CNN Meta-Learner
 
-```bash
-python pipeline.py
-```
+* Input: `(1, 20, 20)`
+* Output: **36 configurations**
+* Predicts:
 
-This automatically:
-1. Loads 150+ training datasets (scikit-learn, OpenML, and local offline CSVs)
-2. Preprocesses and standardizes data
-3. Extracts meta-features for each dataset
-4. Runs SVM hyperparameter search (9 configs × 5-fold CV)
-5. Trains CNN meta-learner with data augmentation (~200 epochs)
-6. Saves model to `models/meta_cnn.pth`
-7. Evaluates on 5 held-out test datasets
-8. Compares CNN vs random baseline
-9. Generates publication-quality plots
-10. Saves all results (CSV + JSON)
+  * algorithm
+  * hyperparameters
+  * confidence
 
-**Estimated time:** ~10-15 minutes on CPU.
+---
 
-### 3. Launch the Web Interface
+## 🤖 Supported Algorithms
+
+* SVM
+* Random Forest
+* Gradient Boosting
+* Logistic Regression
+* KNN
+
+**Total Configurations:** 36
+
+---
+
+## 🧩 Key Features
+
+### ✅ Meta-Learning
+
+Learns from previous datasets instead of brute-force search
+
+### ✅ Knowledge Base
+
+Stores:
+
+* dataset features
+* best configs
+
+### ✅ Dataset Similarity
+
+* cosine similarity
+* k-nearest datasets
+
+### ✅ Data Augmentation
+
+* noise injection
+* subsampling
+* perturbations
+
+### ✅ Hybrid Intelligence
+
+CNN + similarity-based reasoning
+
+---
+
+## 📊 Evaluation Metrics
+
+* Accuracy
+* Hit@K
+* Mean Reciprocal Rank (MRR)
+* Regret
+
+---
+
+## 🧪 Baselines
+
+* Random Search
+* Grid Search
+* MLP Meta-Learner
+
+---
+
+## 🖥️ Interactive Web App
 
 ```bash
 streamlit run frontend/app.py
 ```
 
-**Workflow:**
-1. **Upload** a CSV dataset (last column = target)
-2. **Extract** meta-features → view the 12×12 heatmap
-3. **Recommend** hyperparameters with CNN confidence scores
-4. **Train & Evaluate** an SVM with the recommended parameters
+---
 
-### 4. Run Tests
+## ⚙️ Installation
 
 ```bash
-pytest tests/ -v
+git clone https://github.com/your-username/HPSM.git
+cd HPSM
+pip install -r requirements.txt
 ```
 
-### 5. Verify Everything
+---
+
+## ▶️ Run Pipeline
+
+```bash
+python -m backend.pipeline
+```
+
+---
+
+## 🔍 Verify System
 
 ```bash
 python verify_pipeline.py
 ```
 
-Checks all components: imports, CNN, datasets, meta-features, preprocessing, model files, result CSV/JSON, plots, logs, and Streamlit readiness.
+---
 
-## Configuration
+## 📂 Project Structure
 
-All tuneable parameters are centralized in `backend/config.py`:
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `CNN_EPOCHS` | 200 | Training epochs |
-| `CNN_BATCH_SIZE` | 16 | Batch size |
-| `CNN_LEARNING_RATE` | 0.001 | Adam learning rate |
-| `NUM_AUGMENTED` | 30 | Noise copies per sample |
-| `MATRIX_SIZE` | 12 | Meta-feature matrix dim |
-| `C_VALUES` | [0.1, 1, 10] | SVM C grid |
-| `GAMMA_VALUES` | [0.01, 0.1, 1] | SVM gamma grid |
-
-## Generated Output Files
-
-After running `python pipeline.py`:
-
-| File | Content |
-|------|---------|
-| `models/meta_cnn.pth` | Trained CNN weights |
-| `models/model_info.json` | Model metadata |
-| `experiments/results/hyperparameter_results.csv` | Best HP per training dataset |
-| `experiments/results/meta_features.csv` | Extracted meta-features |
-| `experiments/results/cnn_training_history.csv` | Loss + accuracy per epoch |
-| `experiments/results/evaluation_metrics.csv` | Test dataset results |
-| `experiments/results/evaluation_results.json` | Full evaluation detail |
-| `experiments/plots/training_curves.png` | Loss & accuracy curves |
-| `experiments/plots/accuracy_comparison.png` | CNN vs Random vs True Best |
-| `experiments/plots/metric_summary.png` | Aggregate metrics bar chart |
-| `experiments/plots/confidence_chart.png` | Per-dataset CNN confidence |
-| `experiments/plots/ablation_cnn_vs_random.png` | Ablation comparison |
-| `logs/pipeline.log` | Pipeline execution log |
-
-## CNN Architecture
-
-```
-Input: (1, 12, 12)
-Conv2d(1→16, 3×3, pad=1) → ReLU → MaxPool(2)    → (16, 6, 6)
-Conv2d(16→32, 3×3, pad=1) → ReLU → MaxPool(2)   → (32, 3, 3)
-Flatten → Linear(288, 64) → ReLU → Dropout(0.3)
-Linear(64, 9)  →  9 HP configurations
+```text
+backend/
+frontend/
+experiments/
+models/
+logs/
 ```
 
-~23,881 trainable parameters — CPU-only, lightweight.
+---
 
-## Hardware Requirements
+## ⚡ Scalability
 
-- **CPU only** — no GPU required
-- 8+ GB RAM recommended
-- Python 3.9+
-- Total pipeline time: < 20 minutes
+* CPU-friendly by default
+* Supports:
 
-## License
+  * OpenML dataset expansion (API-based)
+  * GPU acceleration
 
-MIT License — for research and educational purposes.
+> Note: Additional datasets are prepared but not integrated due to computational constraints.
+
+---
+
+## ⚠️ Limitations
+
+* Limited dataset size → possible overfitting
+* Complex multi-class prediction
+
+---
+
+## 🚀 Future Work
+
+* Large-scale dataset integration
+* GPU optimization
+* hierarchical prediction
+* deployment APIs
+
+---
+
+## 🧠 Contributions
+
+* CNN-based AutoML
+* Tabular → Image transformation
+* Hybrid recommendation system
+* Self-improving pipeline
+
+---
+
+## 👩‍💻 Author
+
+**Jaanvi Mutreja**
+
+---
+
+## ⭐ Support
+
+If you like this project:
+⭐ Star the repo
+🍴 Fork it
+🚀 Share it
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**
+
+---
+
+> **“Don’t search for the best model — predict it.”**

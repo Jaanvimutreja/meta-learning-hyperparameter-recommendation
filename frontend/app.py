@@ -234,10 +234,10 @@ st.markdown('<div class="sub-header">Instantly predict the most optimal Machine 
 # ---------------------------------------------------------------------------
 # Tabs
 # ---------------------------------------------------------------------------
-tab_about, tab_interactive_pipeline, tab_knowledge, tab_logs = st.tabs([
+tab_about, tab_interactive_pipeline, tab_experiments, tab_knowledge, tab_logs = st.tabs([
     "🎓 Introduction & About",
     "✨ Try It: Interactive Pipeline",
-    #  "📊 Experiment Results",
+    "📊 Experiment Results",
     "🧠 The Knowledge Base",
     "📋 Developer Logs"
 ])
@@ -445,46 +445,46 @@ with tab_interactive_pipeline:
 # =====================================================================
 # TAB 4 — Experiments
 # =====================================================================
-# with tab_experiments:
+with tab_experiments:
 
-#     if False:
+    if True:
 
-#         eval_json_path = os.path.join(RESULTS_DIR, "evaluation_results.json")
+        eval_json_path = os.path.join(RESULTS_DIR, "evaluation_results.json")
 
-#         if not os.path.exists(eval_json_path):
-#             st.warning("⚠️ No experiments have been finalized. Please generate data first from the Controls tab.")
-#         else:
-#             with open(eval_json_path) as f:
-#                 eval_data = json.load(f)
+        if not os.path.exists(eval_json_path):
+            st.warning("⚠️ No experiments have been finalized. Please generate data first from the Controls tab.")
+        else:
+            with open(eval_json_path) as f:
+                eval_data = json.load(f)
 
-#             st.markdown('<div class="step-container">', unsafe_allow_html=True)
-#             st.header("📊 Global AI Performance Benchmarks")
-#             st.markdown('<div class="info-box">These metrics demonstrate how perfectly the CNN was able to predict the EXACT best model settings compared to an exhaustive mathematical brute-force search.</div>', unsafe_allow_html=True)
+            st.markdown('<div class="step-container">', unsafe_allow_html=True)
+            st.header("📊 Global AI Performance Benchmarks")
+            st.markdown('<div class="info-box">These metrics demonstrate how perfectly the CNN was able to predict the EXACT best model settings compared to an exhaustive mathematical brute-force search.</div>', unsafe_allow_html=True)
             
-#             agg = eval_data.get("aggregate", {})
-#             m1, m2, m3, m4 = st.columns(4)
-#             m1.markdown(f'<div class="metric-card"><div class="metric-value">{agg.get("recommendation_accuracy", 0):.0%}</div><div class="metric-label">Algorithm Hit Rate</div></div>', unsafe_allow_html=True)
-#             m2.markdown(f'<div class="metric-card"><div class="metric-value">{agg.get("mrr", 0):.2f}</div><div class="metric-label">Mean Reciprocal Rank</div></div>', unsafe_allow_html=True)
-#             m3.markdown(f'<div class="metric-card"><div class="metric-value">{agg.get("hit_rate_at_3", 0):.0%}</div><div class="metric-label">Top-3 Hit Rate</div></div>', unsafe_allow_html=True)
-#             m4.markdown(f'<div class="metric-card"><div class="metric-value">{agg.get("mean_cnn_regret", 0):.4f}</div><div class="metric-label">Regret (Error Margin)</div></div>', unsafe_allow_html=True)
+            agg = eval_data.get("aggregate", {})
+            m1, m2, m3, m4 = st.columns(4)
+            m1.markdown(f'<div class="metric-card"><div class="metric-value">{agg.get("recommendation_accuracy", 0):.0%}</div><div class="metric-label">Algorithm Hit Rate</div></div>', unsafe_allow_html=True)
+            m2.markdown(f'<div class="metric-card"><div class="metric-value">{agg.get("mrr", 0):.2f}</div><div class="metric-label">Mean Reciprocal Rank</div></div>', unsafe_allow_html=True)
+            m3.markdown(f'<div class="metric-card"><div class="metric-value">{agg.get("hit_rate_at_3", 0):.0%}</div><div class="metric-label">Top-3 Hit Rate</div></div>', unsafe_allow_html=True)
+            m4.markdown(f'<div class="metric-card"><div class="metric-value">{agg.get("mean_cnn_regret", 0):.4f}</div><div class="metric-label">Regret (Error Margin)</div></div>', unsafe_allow_html=True)
             
-#             st.subheader("High-Resolution Charts")
-#             plot_files = {
-#                 "Loss Curve": "training_curves.png",
-#                 "Prediction Impact": "accuracy_comparison.png",
-#                 "AI Confidence Grid": "confidence_chart.png",
-#                 "Ablation Engine": "ablation_cnn_vs_random.png"
-#             }
+            st.subheader("High-Resolution Charts")
+            plot_files = {
+                "Loss Curve": "training_curves.png",
+                "Prediction Impact": "accuracy_comparison.png",
+                "AI Confidence Grid": "confidence_chart.png",
+                "Ablation Engine": "ablation_cnn_vs_random.png"
+            }
 
-#             ptabs = st.tabs(list(plot_files.keys()))
-#             for t, (name, fname) in zip(ptabs, plot_files.items()):
-#                 path = os.path.join(PLOTS_DIR, fname)
-#                 if os.path.exists(path):
-#                     t.image(path, use_container_width=True)
-#                 else:
-#                     t.info(f"Visual {fname} is tracking offline.")
+            ptabs = st.tabs(list(plot_files.keys()))
+            for t, (name, fname) in zip(ptabs, plot_files.items()):
+                path = os.path.join(PLOTS_DIR, fname)
+                if os.path.exists(path):
+                    t.image(path, use_container_width=True)
+                else:
+                    t.info(f"Visual {fname} is tracking offline.")
 
-#             st.markdown('</div>', unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
 
     
 

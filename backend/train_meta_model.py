@@ -17,6 +17,11 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 
+import random
+np.random.seed(42)
+random.seed(42)
+torch.manual_seed(42)
+
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
@@ -35,6 +40,7 @@ from backend.logger import get_training_logger
 from backend.knowledge_base import load_knowledge_base, save_knowledge_base, add_entry
 
 logger = get_training_logger()
+
 
 
 def build_meta_dataset(datasets_dict):
@@ -141,10 +147,15 @@ def train_model(matrices, labels, epochs=CNN_EPOCHS, lr=CNN_LEARNING_RATE,
     X_tensor = torch.tensor(X)
     y_tensor = torch.tensor(y)
     dataset = TensorDataset(X_tensor, y_tensor)
-    loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+
+    loader = DataLoader(dataset, batch_size=batch_size, shuffle=True, generator=torch.Generator().manual_seed(42))
 
     # Model
-    model = MetaLearnerCNN(num_configs=NUM_CONFIGS, input_size=MATRIX_SIZE)
+    if 'model' in globals() and model is not None:
+         print("Reusing existing model...")
+    else:
+         model = MetaLearnerCNN(num_configs=NUM_CONFIGS, input_size=MATRIX_SIZE)
+    
     n_params = count_parameters(model)
     print(f"\n  Model parameters: {n_params:,}")
     print(f"  Training samples: {len(X)}")
