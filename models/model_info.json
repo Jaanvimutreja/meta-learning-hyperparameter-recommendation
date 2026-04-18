@@ -1,8 +1,17 @@
 {
-  "datasets_used": 2,
+  "datasets_used": 11,
   "dataset_names": [
     "iris",
-    "wine"
+    "wine",
+    "breast_cancer",
+    "glass",
+    "seeds",
+    "banknote",
+    "car",
+    "segment",
+    "satimage",
+    "yeast",
+    "abalone"
   ],
   "num_configs": 36,
   "algorithms": [
@@ -12,11 +21,11 @@
     "LogisticRegression",
     "KNN"
   ],
-  "epochs": 200,
+  "epochs": 10,
   "batch_size": 16,
   "learning_rate": 0.001,
-  "augmented_samples": 92,
+  "augmented_samples": 110,
   "parameters": 425828,
-  "final_loss": 0.00018057036757691884,
-  "final_accuracy": 1.0
+  "final_loss": 1.4082925297997215,
+  "final_accuracy": 0.44545454545454544
 }
